@@ -1,8 +1,8 @@
 #!/usr/bin/python
 import pdb
 import pprint
-import calendar
 import time
+import asyncio
 import os
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 import praw
@@ -10,9 +10,12 @@ import praw
 r=praw.Reddit('boolinbot')
 s=r.subreddit("MemeEconomy")
 ss = {}
+n=[]
+t=[5,10,30,60,120,240]
 
-def queue():
+async def queue():
     d=1
+    global c
     for b in s.new(limit=25):
         if d==1:
             c=time.time()
@@ -24,6 +27,17 @@ def queue():
             ss[c][b]["Score (adjusted)"]=int(b.score)+1
             ss[c][b]["Time"]=b.created
             ss[c][b]["Reliability Factor (/10)"]=10-int(b.score)
+            n.append(b)
+
+def loop():
+    queue()
+    for x in t:a
+        time.
+        for y in len(ss[c]):
+            b=t[y]
+            ss[c][b]["%s min report" %t[y]]=int(b.score)+1
+            
+            
 
 
 queue()
