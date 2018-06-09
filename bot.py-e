@@ -9,35 +9,44 @@ import praw
 
 r=praw.Reddit('boolinbot')
 s=r.subreddit("MemeEconomy")
-ss = {}
+q = {}
 n=[]
+fetch_count=0
+cs=[]
 t=[5,10,30,60,120,240]
 
-async def queue():
-    d=1
-    global c
-    for b in s.new(limit=25):
-        if d==1:
-            c=time.time()
-            ss[c]= {}
-        d=0
-        if b.score < 10 and b.title not in ss and b.is_self == False:
-            ss[c][b]={}
-            ss[c][b]["Title"]=b.title
-            ss[c][b]["Score (adjusted)"]=int(b.score)+1
-            ss[c][b]["Time"]=b.created
-            ss[c][b]["Reliability Factor (/10)"]=10-int(b.score)
-            n.append(b)
+def queue():
+	first_run=1
+	for e in s.new(limit=100):
+		if first_run==1:
+			c=time.time()
+			cs.append(c)
+			q[c]= {}
+		first_run=0
+		if e.score == 0 and e.title not in q and e.is_self == False:
+			b=e.id
+			q[c][b]={}
+			q[c][b]["Title"]=e.title
+			q[c][b]["Score (adjusted)"]=int(e.score)
+			q[c][b]["Time"]=e.created
+		if len(q[c]) > 10:
+			break
 
-def loop():
-    queue()
-    for x in t:a
-        time.
-        for y in len(ss[c]):
-            b=t[y]
-            ss[c][b]["%s min report" %t[y]]=int(b.score)+1
-            
-            
 
+def fetch():
+	fetch_count+=1
+	queue()
+	n=list(q[c].keys())
+	for i in t:
+		if i>59:
+			x="hours"
+			y=t/60
+		else:
+			x="minutes"
+			y=t
+		for l in n:
+			q[cs[fetch_count]][l]["Score after {0} {1}".format(y, x)]=reddit.submission(l).score
+		time.sleep(i)
 
 queue()
+pprint.pprint(q)
