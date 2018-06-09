@@ -27,7 +27,7 @@ def queue():
 			cs.append(c)
 			q[c]= {}
 		first_run=0
-		if e.score == 0 and e.title not in q and e.is_self == False:
+		if e.score == 0 and e.is_self == False:
 			b=e.id
 			dc = dt.fromtimestamp(e.created)
 			q[c][b]={}
@@ -46,28 +46,33 @@ def fetch(quick=0):
 	fetch_count+=1
 	queue()
 	n=list(q[c].keys())
-	m=0
 	print("begin %s" %len(n))
-	if quick=0:
+	if quick==0:
 		a=t
 	else:
 		a=d
 	for i in a:
 		print("loop")
+		time.sleep(i/10)
 		y+=i
 		z=y
-		if i>59:
+		if y>59:
 			x="hours"
-			z=y/60
-			x="minute"
+			print(i)
+			try:
+				z=int(y/60)
+			except z!=y/60:
+				z=y/60
 		else:
 			x="minutes"
 		if y==1:
 			x="minute"
+		elif y==60:
+			x="hour"
 		for l in n:
 			q[cs[fetch_count-1]][l]["Score after {0} {1}".format(z, x)]=r.submission(l).score
+			print(z,x)
 			print("get %s" %l)
-		time.sleep(i*60)
 
 fetch()
 pprint.pprint(q)
