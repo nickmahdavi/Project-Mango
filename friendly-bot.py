@@ -55,9 +55,9 @@ def fetch(quickrun=0):
 		time.sleep(i*60)
 		totaltime+=i
 		truetotaltime=totaltime
-		if i>59:
+		if y>59:
 			timeid="hours"
-			truetotaltime=totaltime/60
+			z=int(truetotaltime=totaltime/60)
 		else:
 			timeid="minutes"
 		if totaltime==1:

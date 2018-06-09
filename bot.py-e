@@ -14,7 +14,7 @@ s=r.subreddit("MemeEconomy")
 q = {}
 fetch_count=0
 cs=[]
-t=[5,5,20,30,60,120]
+t=[5,5,20,30,65,120]
 d=[1,2,3,4]
 used=tuple("abceilnqtxyz")
 
@@ -59,10 +59,7 @@ def fetch(quick=0):
 		if y>59:
 			x="hours"
 			print(i)
-			try:
-				z=int(y/60)
-			except z!=y/60:
-				z=y/60
+			z=int(y/60)
 		else:
 			x="minutes"
 		if y==1:
