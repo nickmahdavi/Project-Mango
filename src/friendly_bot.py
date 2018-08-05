@@ -14,6 +14,7 @@ dt=datetime.datetime
 r=praw.Reddit('boolinbot')
 s=r.subreddit("MemeEconomy")
 final = {}
+totaltime=0
 fetch_count=0
 timestamps=[]
 t=[5,5,20,30]#,60,120]
@@ -23,12 +24,11 @@ d=[1/60,1/60,3/60,4/60]
 
 #Logging function
 def queue():
-	global c
 	stamp=time.time()
 	timestamps.append(stamp)
 	final[stamp]= {}
 	for post in s.new(limit=25):
-		if post.score == 0 and post.is_self == False:
+		if post.is_self == False:
 			dc = dt.fromtimestamp(post.created)
 			final[stamp][post.id]={}
 			final[stamp][post.id]["Title"]=post.title
@@ -41,11 +41,10 @@ def queue():
 
 
 def fetch(quickrun=0):
+        global fetch_count
+        fetch_count+=1
 	queue()
-
-	global fetch_count
-	totaltime=0
-	fetch_count+=1
+	
 	truesleep=d
 	keys=list(final[timestamps[fetch_count-1]].keys())
 	
