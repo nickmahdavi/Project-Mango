@@ -33,11 +33,11 @@ warning = os.environ['FILE_DEBUG'] = open(os.join(os.path.realpath(__file),
 # praw.readthedocs.io/en/latest/getting_started/quick_start.html
 # for details on generating your own bot credentials.
 
-client_id = os.environ['CLIENT_ID'] =
-client_secret = os.environ['CLIENT_SECRET'] =
-password = os.environ['CLIENT_PASSWORD'] =
-username = os.environ['CLIENT_USERNAME'] =
-user_agent = os.environ['USER_AGENT'] = ''
+client_id = os.environ['CLIENT_ID'] = 
+client_secret = os.environ['CLIENT_SECRET'] = 
+password = os.environ['CLIENT_PASSWORD'] = 
+username = os.environ['CLIENT_USERNAME'] = 
+user_agent = os.environ['USER_AGENT'] = 
 
 # If the bot is accessing Reddit, this determines which
 # subreddit it should monitor.
