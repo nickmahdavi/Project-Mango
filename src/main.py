@@ -5,6 +5,7 @@ import logging
 import os
 import sys
 
+import pandas as pd
 import praw
 
 import error
@@ -21,26 +22,25 @@ s=r.subreddit(config.subreddit)
 
 class Fetcher:
     def __init__(self):
-        self.data = []
-        self.fetches = 0
+        self.data = pd.DataFrame()
     def __call__(self, dry_run = False):
         self.fetch(dry_run)    
     def fetch(self, dry_run):
-        self.fetches += 1
         for p in s.stream.submissions():
             if not handler.killed:
                 print (f"Fetching new {self.fetches}")
                 try:
-                    self.data.append({})
-                    self.data[self.fetches - 1]["id"] = p
-                    self.data[self.fetches - 1]["title"] = p.title
-                    self.data[self.fetches - 1]["score"] = p.score
-                    self.data[self.fe
+                    self.row={}
+                    self.row['id'] = p.id
+                    self.row['title'] = p.id
+                    self.data['score'] = p.score
+                    self.data['title'] = p.title
                     if p.is_self:
                         self.data[self.fetches - 1]["self"] = True
                         self.data[self.fetches - 1]["selftext"] = p.selftext
                     else:
                         self.data[self.fetches - 1]["self"] = False
+                        
                 except Exception:
                     logger.error()
                     self.data[self.fetches - 1]["error"] = logger.mark()
@@ -51,18 +51,14 @@ class Fetcher:
                 try:
                     if not dry_run:
                         logger.write(self.data)
-                    sys.exit("Received kill signal {}, exited gracefully".format(handler.lastSignal))
+                    sys.exit(f"Received kill signal {handler.lastSignal}, exited gracefully")
                 except Exception as e:
-                    print(error.log(False))
-                    sys.exit("An error occured when trying to exit gracefully, shutting down")
+                    print("The following fatal error occured while shutting down:")
+                    error.log()
 
 def main():
     if "wipe" in sys.argv:
         open(config.data, 'w').close()
-    global handler, logger, fetcher
-    handler=Handler()
-    logger=Logger()
-    fetcher=Fetcher()
     if "dry" in sys.argv:
         fetcher(True)
     elif "none" not in sys.argv:
@@ -72,4 +68,7 @@ def main():
         
         
 if __name__ == "__main__":
+    handler=Handler()
+    logger=Logger()
+    fetcher=Fetcher()
     main()

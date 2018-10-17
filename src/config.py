@@ -1,6 +1,4 @@
 import os
-import sys
-import logging
 
 # This file is not meant to be modified. Please make sure you know what you
 # are changing before you make the changes, and document them well.
@@ -19,23 +17,13 @@ log = os.path.abspath('../data/log.log')
 # praw.readthedocs.io/en/latest/getting_started/quick_start.html
 # for details on generating your own bot credentials.
 
-client_id = os.environ['CLIENT_ID'] =
-client_secret = os.environ['CLIENT_SECRET'] =
-password = os.environ['CLIENT_PASSWORD'] =
-username = os.environ['CLIENT_USERNAME'] =
-user_agent = os.environ['USER_AGENT'] = ''
+client_id = os.environ['CLIENT_ID'] = 
+client_secret = os.environ['CLIENT_SECRET'] = 
+password = os.environ['CLIENT_PASSWORD'] = 
+username = os.environ['CLIENT_USERNAME'] = 
+user_agent = os.environ['USER_AGENT'] = 
 
 # If the bot is accessing Reddit, this determines which
 # subreddit it should monitor.
 
 subreddit = os.environ['SUBREDDIT'] = 'MemeEconomy'
-
-# ------------------------------------- #
-## <-- Local variables for the bot --> ##
-# ------------------------------------- #
-
-basename = os.path.basename(__file__)[-3:]
-
-# ----------------------------------------------------------- #
-## <-- Setup functions for logging, etc --> ##
-# ----------------------------------------------------------- #
