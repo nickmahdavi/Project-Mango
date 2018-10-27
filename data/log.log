@@ -1,1 +1,5 @@
-ain.p: IndexError (line 64): "list index out of range"
+------ main.py: 2018-10-26 22:08:03 on linux, pid 24744 ------
+------ Reading from askreddit; for more inforation see config.py. ------
+main.py | 2018-10-26 22:08:05.113 INFO | ln 56: Fetching and ignoring first 100 replies
+main.py | 2018-10-26 22:08:05.439 INFO | ln 58: Fetching new 101
+main.py | 2018-10-26 22:08:15.685 INFO | ln 53: ENTERING MAINTENENCE MODE. NEW POSTS WILL NOT BE PROCESSED AND CHANGES WILL NOT TAKE PLACE.
