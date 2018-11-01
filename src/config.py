@@ -5,7 +5,7 @@ dry_run  = 0
 do_log   = 1
 pre_wipe = 1
 
-data = os.path.abspath('../data/data')
+data = os.path.abspath('../data/data.csv')
 log = os.path.abspath('../data/log.log')
 
 subreddit = 'askreddit'
