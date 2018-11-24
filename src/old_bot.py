@@ -1,19 +1,26 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 import pprint
 import time
 import asyncio
 import os
 import datetime
 
-#Changes the working dir to current so that praw.ini reads and does not have to be recreated
+#Changes the working dir to current so that praw.ini reads and does not have to be recreated (DEPRECATED, UNNECESSARY)
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 import praw
 
+import config
+
 dt=datetime.datetime
-r=praw.Reddit('boolinbot')
+r = praw.Reddit(client_id=config.cid,
+                client_secret=config.secret,
+                password=config.password,
+                username=config.username,
+                user_agent=config.user_agent)
 s=r.subreddit("MemeEconomy")
 final = {}
+global totaltime
 totaltime=0
 fetch_count=0
 timestamps=[]
@@ -42,6 +49,7 @@ def queue():
 
 def fetch(quickrun=0):
         global fetch_count
+
         fetch_count+=1
         queue()
         
@@ -58,6 +66,7 @@ def fetch(quickrun=0):
                 
                 time.sleep(i*60)
                 
+                global totaltime
                 totaltime+=i
                 truetotaltime=totaltime
 
@@ -86,3 +95,5 @@ def fetch(quickrun=0):
                         print("get %s" %l)
 
         return pprint.pprint(final)
+
+fetch(quickrun=1)
