@@ -39,5 +39,3 @@ So I cut this down by 90 characters or so (yes, that is a reasonable estimate of
 ### Can I run this myself?
 
 A: Yes, so long as you have an API key and user account on Reddit set up for development.
-
-Oh, and don't bother trying to dig up the history and get my keys in plaintext. They're gone. I was dumb enough to put them there in the first place and smart enough to remove them.

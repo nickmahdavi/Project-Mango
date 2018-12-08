@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-import time, os, sys, logging, importlib
+import time
+import os
+import sys
+import logging
 
 import praw
 import prawcore
@@ -10,73 +13,56 @@ from dataframe import DataFrame
 import config
 
 
+attr = config.ATTR
+s_attr = config.S_ATTR
+
+FORMAT = '%(filename)s | %(asctime)s.%(msecs)03d %(levelname)s @ %(lineno)d: %(message)s'
+DATEFMT = '%Y-%m-%d %H:%M:%S'
+
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
 handler = logging.FileHandler(config.log)
-handler.setLevel(logging.INFO)
-formatter = logging.Formatter('%(filename)s | %(asctime)s.%(msecs)03d %(levelname)s @ %(lineno)d: %(message)s',
-                              datefmt='%Y-%m-%d %H:%M:%S')
+formatter = logging.Formatter(FORMAT, datefmt=DATEFMT)
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 
-def error():
+def get_error():
     global e_type, e_obj, e_tb, tb
     e_type, e_obj, e_tb = sys.exc_info()
     tb = (f'{e_type.__name__} @ {e_tb.tb_lineno}: \"{e_obj}\"')
+    
+    return tb
 
-
-def isempty(file):
-    return os.path.isfile(file) and (os.path.getsize(file) == 0)
-
-
-def auth(id=config.cid,
-         secret=config.secret,
-         password=config.password,
-         username=config.username,
-         agent=config.user_agent,
-         subreddit=config.subreddit):
-    r = praw.Reddit(client_id=id,
-                    client_secret=secret,
-                    password=password,
-                    username=username,
-                    user_agent=agent)
-    s = r.subreddit(subreddit)
+ 
+def auth():
+    r = praw.Reddit(client_id=config.CLIENT_ID,
+                    client_secret=config.CLIENT_SECRET,
+                    password=config.PASSWORD,
+                    username=config.USERNAME,
+                    user_agent=config.USER_AGENT)
+    s = r.subreddit(config.subreddit)
 
     return r, s
 
 
 def main():
-    if config.pre_wipe:
+    if config.PRE_WIPE:
         open(config.log, 'w').close()
+        open(config.data, 'w').close()
 
-    with open(config.log, 'a') as file:
-        if not os.path.getsize(config.log) == 0:
-            file.write(('- ' * 37) + '-\n')
-        file.close()
-
-    logger.info(f'{time.strftime("%Y-%m-%d %H:%M:%S")} on {sys.platform}, pid {os.getpid()}')
-    logger.info(f'Reading from {config.subreddit}; for more inforation see config.py.')
-
-    attr = config.attributes
-    sattr = config.sattributes
-    xattr = config.xattributes
-    timeout = config.timeouts
+    logger.info(f' -- {time.strftime("%Y-%m-%d %H:%M:%S")} on {sys.platform}, pid {os.getpid()}')
+    logger.info(f' -- Reading from {config.subreddit}; for more inforation see config.py.')
 
     r, s = auth()
 
-    retries = 0
-
-    df = DataFrame(attr+sattr+list(xattr.keys()))
+    df = DataFrame(attr + s_attr + ['time_now'])
     handler = Handler()
-    stopwatch = Stopwatch()  # Superfluous and so not implemented
+    stopwatch = Stopwatch()
 
-    if os.path.getsize(config.data) < 2:
-        col = DataFrame(attr+sattr+list(xattr.keys()))
+    if open(config.log).read().strip('\n'):
+        col = DataFrame(attr + s_attr + ['time_now'])
         logger.info('Writing columns')
-        col.write(header=True)
-
-    retries = 0
+        col.write()
 
     while True:
         try:
@@ -89,115 +75,89 @@ def main():
             logging.critical('Subreddit does not exist. Exiting.')
             exit()
         except prawcore.exceptions.RequestException:
-            retries += 1
-            if retries < config.max_retries[0]:
-                logging.error('Could not establish connection.')
-                logging.error(f'Waiting for {config.timeouts[retries][0]} seconds...')
-            else:
-                logging.critical('Max retries exceeded. Exiting.')
-                exit()
+            logging.error('Connection lost, exiting.')
+            exit()
 
-    while not handler.killed:  # Dry run?
-        if config.maintenance:
-                logger.info('MAINTENANCE MODE ENABLED. WAITING TO FETCH FROM REDDIT.')
-                while True:
-                    importlib.reload(config)
-                    if not config.maintenance:
-                        break
-                if handler.killed:
-                    logger.info(f'Received kill signal {handler.lastSignal} (code {handler.lastSignum})')
-                    if not config.dry_run:
-                        logger.info('Writing dataframe to .CSV')
-                        try:
-                            df.write()
-                        except Exception:
-                            logger.log('Failed to write to CSV.')
-                    logger.info('Exited successfully.')
-                    time.sleep(1)
-                logger.info('EXITING MAINTENANCE MODE.')
-
+    retries = 0
+ 
+    while not handler.killed:
         try:
             if retries:
                 logger.info('Attempting to retry...')
 
-            row = dict((el, []) for el in attr + sattr + list(xattr.keys()))
+            stopwatch.reset()            
+
+            row, row_new = dict((el, []) for el in attr + s_attr + ['time_now'])
 
             for post_id in df.isolate(['id'])['id']:
                 post = r.submission(post_id)
                 for _a in attr:
                     row[_a].append(getattr(post, _a))
-                for _s in sattr:
+                for _s in s_attr:
                     row[_s].append(getattr(s, _s))
-                for _x in list(xattr.keys()):
-                    row[_x].append(eval(xattr[_x]))
+                row['time_now'].append(time.time())
 
-            df.append(row)
-
-            row = dict((el, []) for el in attr + sattr + list(xattr.keys()))
-            
-            for post in s.new(limit=config.post_get_limit):
+            for post in s.new(limit=config.POST_GET_LIMIT):
                 for _a in attr:
-                    row[_a].append(getattr(post, _a))
-                for _s in sattr:
-                    row[_s].append(getattr(s, _s))
-                for _x in list(xattr.keys()):
-                    row[_x].append(eval(xattr[_x]))
+                    row_new[_a].append(getattr(post, _a))
+                for _s in s_attr:
+                    row_new[_s].append(getattr(s, _s))
+                row_new['time_now'].append(time.time())
 
             df.append(row)
+            df.append(row_new)
 
             df.isolate(['id', 'ups', 'downs'], True)
             df.write()
 
         except prawcore.exceptions.RequestException:
             retries += 1
-            if retries < 8:
-                logger.warning(f'Could not establish connection. Waiting for {timeout[retries][1]} sec...')
-                time.sleep(timeout[retries][1])
+            if retries < len(config.TIMEOUTS):
+                logger.warning(f'Could not establish connection. Waiting for {config.TIMEOUTS[retries-1]} sec...')
+                time.sleep(config.TIMEOUTS[retries-1])
             else:
                 logger.critical('Max retries exceeded. Exiting.')
                 break
 
         except prawcore.exceptions.OAuthException:
-            error()
-            logger.critical(tb)
+            logger.critical(get_error())
             logger.critical('Invalid credentials. Exiting.')
             break
 
         except Exception:
-            error()
-            logger.error(tb)
+            logger.error(get_error())
             time.sleep(5)
 
         else:
             if retries:
                 logger.info('Connection reestablished')
                 retries = 0
-            logger.info(f'Currently {len(df.df.index)} entries in dataframe, {len(df.isolate("id").index)} unique')
-
-        finally:
-            if handler.killed:
-                logger.info(f'Received kill signal {handler.lastSignal} (code {handler.lastSignum})')
-                if not config.dry_run:
-                    logger.info('Writing dataframe to .CSV')
-                    try:
-                        df.isolate(['id', 'ups', 'downs'], True)
-                        df.write()
-                    except Exception:
-                        error()
-                        logger.warning('Failed to write to CSV.')
-                        logger.warning(tb)
-                    else:
-                        logger.info('Successfully wrote dataframe.')
-                logger.info('Exited.')
-                break
             
             rem = r.auth.limits['remaining']
             res = r.auth.limits['reset_timestamp'] - time.time()
-            logger.info(f'{rem:.0f} calls remaining, {res:.0f} till next reset')
-            
-            importlib.reload(config)
 
-            time.sleep((len(df.isolate("id").index) + config.post_get_limit) * 2)
+            logging.info(f'Took {stopwatch.mark()} sec')
+            logger.info(f'{rem:.0f} calls remaining, {res:.0f} till next reset')
+            logger.info(f'Currently {len(df.df.index)} entries in dataframe, {len(df.isolate("id").index)} unique')
+
+        finally:
+            for _ in range((len(df.isolate("id").index) + config.POST_GET_LIMIT) * 2):
+                time.sleep(1)
+
+                if handler.killed:
+                    logger.info(f'Received kill signal {handler.lastSignal} (code {handler.lastSignum})')
+                    if not config.DRY_RUN:
+                        logger.info('Writing dataframe to .CSV')
+                        try:
+                            df.isolate(['id', 'ups', 'downs'], True)
+                            df.write()
+                        except Exception:
+                            logger.warning(get_error())
+                            logger.warning('Failed to write to CSV.')
+                        else:
+                            logger.info('Successfully wrote dataframe.')
+                    logger.info('Exited.')
+                    break
 
 
 if __name__ == "__main__":

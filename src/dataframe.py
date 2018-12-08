@@ -13,8 +13,8 @@ class DataFrame:
     def append(self, row):
         self.df = self.df.append(pd.DataFrame(row, columns=self.columns), ignore_index=True)
 
-    def write(self, header=False, index=False):
-        with open(config.data, 'a') as file:
+    def write(self, header=True, index=False, mode='w'):
+        with open(config.data, mode) as file:
             self.df.to_csv(file, header=header, index=index)
 
     def _dict(self, dataframe=None):
