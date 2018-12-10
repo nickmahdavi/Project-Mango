@@ -6,15 +6,16 @@ import logging
 
 import praw
 import prawcore
+import pandas as pd
 
 from handler import Handler
 from stopwatch import Stopwatch
-from dataframe import DataFrame
 import config
 
 
-attr = config.ATTR
+p_attr = config.ATTR
 s_attr = config.S_ATTR
+attr = p_attr + s_attr + ['time_now']
 
 FORMAT = '%(filename)s | %(asctime)s.%(msecs)03d %(levelname)s @ %(lineno)d: %(message)s'
 DATEFMT = '%Y-%m-%d %H:%M:%S'
@@ -48,21 +49,15 @@ def auth():
 def main():
     if config.PRE_WIPE:
         open(config.log, 'w').close()
-        open(config.data, 'w').close()
 
     logger.info(f' -- {time.strftime("%Y-%m-%d %H:%M:%S")} on {sys.platform}, pid {os.getpid()}')
     logger.info(f' -- Reading from {config.subreddit}; for more inforation see config.py.')
 
     r, s = auth()
 
-    df = DataFrame(attr + s_attr + ['time_now'])
+    df = pd.DataFrame(attr)
     handler = Handler()
     stopwatch = Stopwatch()
-
-    if open(config.log).read().strip('\n'):
-        col = DataFrame(attr + s_attr + ['time_now'])
-        logger.info('Writing columns')
-        col.write()
 
     while True:
         try:
@@ -87,28 +82,29 @@ def main():
 
             stopwatch.reset()            
 
-            row, row_new = dict((el, []) for el in attr + s_attr + ['time_now'])
+            row, row_new = dict((a, []) for a in attr)
 
-            for post_id in df.isolate(['id'])['id']:
+            for post_id in df.drop_duplicates(subset=['id'], inplace=False)['id']:
                 post = r.submission(post_id)
-                for _a in attr:
+                for _a in p_attr:
                     row[_a].append(getattr(post, _a))
                 for _s in s_attr:
                     row[_s].append(getattr(s, _s))
                 row['time_now'].append(time.time())
 
             for post in s.new(limit=config.POST_GET_LIMIT):
-                for _a in attr:
+                for _a in p_attr:
                     row_new[_a].append(getattr(post, _a))
                 for _s in s_attr:
                     row_new[_s].append(getattr(s, _s))
                 row_new['time_now'].append(time.time())
 
-            df.append(row)
-            df.append(row_new)
+            df = df.append(row, ignore_index=True)
+            df = df.append(row_new, ignore_index=True)
 
-            df.isolate(['id', 'ups', 'downs'], True)
-            df.write()
+            df.drop_duplicates(subset=['id', 'ups', 'downs'], inplace=True)  # potential config variable herea
+
+            df.to_csv(config.data, index=False)
 
         except prawcore.exceptions.RequestException:
             retries += 1
@@ -125,8 +121,8 @@ def main():
             break
 
         except Exception:
-            logger.error(get_error())
-            time.sleep(5)
+            logger.critical(get_error())
+            break
 
         else:
             if retries:
@@ -138,10 +134,10 @@ def main():
 
             logging.info(f'Took {stopwatch.mark()} sec')
             logger.info(f'{rem:.0f} calls remaining, {res:.0f} till next reset')
-            logger.info(f'Currently {len(df.df.index)} entries in dataframe, {len(df.isolate("id").index)} unique')
+            logger.info(f'Currently {len(df.index)} entries in dataframe, {len(df.drop_duplicates(subset=["id"]).index)} unique')
 
         finally:
-            for _ in range((len(df.isolate("id").index) + config.POST_GET_LIMIT) * 2):
+            for _ in range((len(df.drop_duplicates(subset=['id'])) + config.POST_GET_LIMIT) * 2):
                 time.sleep(1)
 
                 if handler.killed:
@@ -149,8 +145,8 @@ def main():
                     if not config.DRY_RUN:
                         logger.info('Writing dataframe to .CSV')
                         try:
-                            df.isolate(['id', 'ups', 'downs'], True)
-                            df.write()
+                            df.drop_duplicates(subset=['id', 'ups', 'downs'], inplace=True)
+                            df.to_csv(config.data, index=False)
                         except Exception:
                             logger.warning(get_error())
                             logger.warning('Failed to write to CSV.')
