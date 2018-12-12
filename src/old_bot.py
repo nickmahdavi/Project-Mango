@@ -13,11 +13,11 @@ import praw
 import config
 
 dt=datetime.datetime
-r = praw.Reddit(client_id=config.cid,
-                client_secret=config.secret,
-                password=config.password,
-                username=config.username,
-                user_agent=config.user_agent)
+r = praw.Reddit(client_id=config.CLIENT_ID,
+                client_secret=config.CLIENT_SECRET,
+                password=config.PASSWORD,
+                username=config.USERNAME,
+                user_agent=config.USER_AGENT)
 s=r.subreddit("MemeEconomy")
 final = {}
 global totaltime

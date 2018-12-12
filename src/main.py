@@ -121,7 +121,7 @@ def main():
             break
 
         except Exception:
-            logger.critical(get_error())
+            logger.error(get_error())
             break
 
         else:
