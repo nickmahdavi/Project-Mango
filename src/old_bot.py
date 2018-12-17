@@ -5,9 +5,6 @@ import asyncio
 import os
 import datetime
 
-#Changes the working dir to current so that praw.ini reads and does not have to be recreated (DEPRECATED, UNNECESSARY)
-os.chdir(os.path.dirname(os.path.realpath(__file__)))
-
 import praw
 
 import config

@@ -1,17 +1,17 @@
-import os, time
-from inspect import getfile, currentframe
+import os
+import time
 
-os.chdir(os.path.dirname(os.path.abspath(getfile(currentframe()))))
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 DRY_RUN        = 0
-PRE_WIPE       = 1
-POST_GET_LIMIT = 1
+POST_GET_LIMIT = 5
 MAX_RETRIES    = 8
+TIMEOUT_SECS   = 30
 
-data = os.path.abspath('../data/data.csv')
-log  = os.path.abspath('../data/log.log')
+DATAFILE = os.path.abspath('../data/data.csv')
+LOGFILE  = os.path.abspath('../data/log.log')
 
-subreddit = 'AskReddit'
+SUBREDDIT = 'LifeProTips'
 
 CLIENT_ID      = os.environ['CLIENT_ID']
 CLIENT_SECRET  = os.environ['CLIENT_SECRET']
@@ -27,12 +27,9 @@ ATTR     = ['id',
             'selftext',
             'author',
             'subreddit',
-            'locked',
-            'stickied',
             'created_utc',
             'ups',
             'downs',
-            'num_reports',
             'edited'
             ]
 
