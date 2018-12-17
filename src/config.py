@@ -11,6 +11,16 @@ TIMEOUT_SECS   = 30
 DATAFILE = os.path.abspath('../data/data.csv')
 LOGFILE  = os.path.abspath('../data/log.log')
 
+if os.path.getsize("../data/log.log") != 0:
+    logname = '../data/log-' + str(int(time.time())) + '.log'
+    open(logname, 'a').close()
+    LOGFILE = os.path.abspath('../data/' + logname)
+
+if os.path.getsize("../data/data.csv") != 0:
+    logname = '../data/data-' + str(int(time.time())) + '.csv'
+    open(logname, 'a').close()
+    DATAFILE = os.path.abspath('../data/' + logname)
+
 SUBREDDIT = 'LifeProTips'
 
 CLIENT_ID      = os.environ['CLIENT_ID']
