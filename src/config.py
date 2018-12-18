@@ -3,10 +3,11 @@ import time
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-DRY_RUN        = 0
-POST_GET_LIMIT = 5
-MAX_RETRIES    = 8
-TIMEOUT_SECS   = 30
+DRY_RUN         = 0
+POST_GET_LIMIT  = 5
+MAX_RETRIES     = 8
+TIMEOUT_SECS    = 10
+POST_DROP_AFTER = 127800
 
 DATAFILE = os.path.abspath('../data/data.csv')
 LOGFILE  = os.path.abspath('../data/log.log')
@@ -21,7 +22,7 @@ if os.path.getsize("../data/data.csv") != 0:
     open(logname, 'a').close()
     DATAFILE = os.path.abspath('../data/' + logname)
 
-SUBREDDIT = 'LifeProTips'
+SUBREDDIT = 'LifeProTips'  # Find a better subreddit
 
 CLIENT_ID      = os.environ['CLIENT_ID']
 CLIENT_SECRET  = os.environ['CLIENT_SECRET']
@@ -36,7 +37,6 @@ ATTR     = ['id',
             'title',
             'selftext',
             'author',
-            'subreddit',
             'created_utc',
             'ups',
             'downs',

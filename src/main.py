@@ -56,7 +56,6 @@ def main():
 
     df = pd.DataFrame(columns=attr)
     handler = Handler()
-    stopwatch=Stopwatch()
 
     def kill_check():
         if handler.killed:
@@ -72,7 +71,7 @@ def main():
                 else:
                     logger.info('Successfully wrote dataframe.')
             logger.info('Exited.')
-            
+
             return True
 
     retries = 0
@@ -84,28 +83,31 @@ def main():
 
             row = row_new = dict((a, []) for a in attr)
 
-            for post_id in list(df.drop_duplicates(subset=['id'], inplace=False)['id']):
-                stopwatch.reset()
+            values = df.drop_duplicates(subset=['id'])
+
+            # There are better ways of doing this entire block
+            for post_id in values['id'].values:
+                if (time.time() - values.loc[values['id'] == post_id]['created_utc']) > config.POST_DROP_AFTER:
+                    continue
                 post = r.submission(post_id)
                 for _a in p_attr:
                     row[_a].append(getattr(post, _a))
                 for _s in s_attr:
                     row[_s].append(getattr(s, _s))
                 row['time_now'].append(time.time())
-                logger.info(stopwatch.mark())
 
             for post in s.new(limit=config.POST_GET_LIMIT):
+                if post.id in values['id'].values:
+                    break
                 for _a in p_attr:
                     row_new[_a].append(getattr(post, _a))
                 for _s in s_attr:
                     row_new[_s].append(getattr(s, _s))
                 row_new['time_now'].append(time.time())
 
-            # Fix this
             df = df.append(pd.DataFrame(row_new, columns=attr), ignore_index=True)
             df = df.append(pd.DataFrame(row, columns=attr), ignore_index=True)
-            df.drop_duplicates(subset=['id', 'ups', 'downs'], inplace=True)  # potential config variable herea
-
+            df.drop_duplicates(subset=['id', 'ups', 'downs'], inplace=True)
             df.to_csv(config.DATAFILE, index=False)
 
         except prawcore.exceptions.RequestException:  # You most likely do not need this
@@ -119,35 +121,27 @@ def main():
 
         except Exception:  # Or this
             logger.error(get_error())
-            break
+            exit()
 
         else:
             if retries:
                 logger.info('Connection reestablished')
                 retries = 0
-
             logger.info(f'Currently {len(df.index)} entries in dataframe, {len(df.drop_duplicates(subset=["id"]).index)} unique')
 
         finally:
             rem = r.auth.limits['remaining']
             res = r.auth.limits['reset_timestamp'] - time.time()
-
             if rem > 5:
                 logger.info(f'{rem:.0f} calls remaining, {res:.0f} till next reset')
-
                 for _ in range(config.TIMEOUT_SECS):
                     time.sleep(1)
-
-                    # Absolutely horrific, there must be a better way to do this
                     if kill_check():
                         break
-
             else:
                 logger.warning('Out of calls! Waiting...')
                 for _ in range(int(res) + 1):
                     time.sleep(1)
-
-                    # See above
                     if kill_check():
                         break
 
