@@ -87,7 +87,7 @@ def main():
 
             # There are better ways of doing this entire block
             for post_id in values['id'].values:
-                if (time.time() - values.loc[values['id'] == post_id]['created_utc']) > config.POST_DROP_AFTER:
+                if (time.time() - values.loc[values['id'] == post_id]['created_utc'].iloc[0]) > config.POST_DROP_AFTER:
                     continue
                 post = r.submission(post_id)
                 for _a in p_attr:
@@ -121,7 +121,7 @@ def main():
 
         except Exception:  # Or this
             logger.error(get_error())
-            exit()
+            os._exit(1)
 
         else:
             if retries:

@@ -1,0 +1,6 @@
+main.py | 2018-12-18 10:56:56.776 INFO @ 52: -- 2018-12-18 10:56:56 on darwin, pid 82152
+main.py | 2018-12-18 10:56:56.776 INFO @ 53: -- Reading from LifeProTips; for more inforation see config.py.
+main.py | 2018-12-18 10:56:58.179 INFO @ 130: Currently 5 entries in dataframe, 5 unique
+main.py | 2018-12-18 10:56:58.179 INFO @ 136: 596 calls remaining, 182 till next reset
+main.py | 2018-12-18 10:57:08.203 ERROR @ 123: ValueError @ 90: "The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all()."
+main.py | 2018-12-18 10:57:08.203 INFO @ 136: 596 calls remaining, 172 till next reset
