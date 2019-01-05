@@ -13,9 +13,9 @@ from handler import Handler
 import config
 
 
+attr = config.ATTR + config.S_ATTR + ['time_now'] + ['last_interval'] + ['post_pickup']
 p_attr = config.ATTR
 s_attr = config.S_ATTR
-attr = p_attr + s_attr + ['time_now']
 
 FORMAT = '%(filename)s | %(asctime)s.%(msecs)03d %(levelname)s @ %(lineno)d: %(message)s'
 DATEFMT = '%Y-%m-%d %H:%M:%S'
@@ -38,24 +38,25 @@ def get_error():
 
 
 def auth():
-    r = praw.Reddit(client_id=config.CLIENT_ID,
+    reddit = praw.Reddit(client_id=config.CLIENT_ID,
                     client_secret=config.CLIENT_SECRET,
                     password=config.PASSWORD,
                     username=config.USERNAME,
                     user_agent=config.USER_AGENT)
-    s = r.subreddit(config.SUBREDDIT)
 
-    return r, s
+    return reddit
 
 
 def main():
     logger.info(f'-- {time.strftime("%Y-%m-%d %H:%M:%S")} on {sys.platform}, pid {os.getpid()}')
     logger.info(f'-- Reading from {config.SUBREDDIT}; for more inforation see config.py.')
 
-    r, s = auth()
+    r = auth()
+    s = r.subreddit(config.SUBREDDIT)
 
     df = pd.DataFrame(columns=attr)
     handler = Handler()
+    stopwatch = Stopwatch()
 
     def kill_check():
         if handler.killed:
@@ -64,7 +65,7 @@ def main():
                 logger.info('Writing dataframe to .CSV')
                 try:
                     df.drop_duplicates(subset=['id', 'ups', 'downs'], inplace=True)
-                    df.to_csv(config.DATAFILE, index=False)
+                    df.drop(['last_interval', 'post_pickup'], axis=1).to_csv(config.DATAFILE, index=False)
                 except Exception:
                     logger.warning(get_error())
                     logger.warning('Failed to write to CSV.')
@@ -74,20 +75,30 @@ def main():
 
             return True
 
+        else:
+            return False
+
     retries = 0
 
     while not handler.killed:
         try:
             if retries:
-                logger.info('Attempting to retry...')
+                logger.info(f'Attempting to retry, attempt {retries}...')
 
-            row = row_new = dict((a, []) for a in attr)
+            row = dict((a, []) for a in attr)
+            row_new = dict((a, []) for a in attr)
 
-            values = df.drop_duplicates(subset=['id'])
+            values = df.drop_duplicates(subset=['id'], keep='last')
 
-            # There are better ways of doing this entire block
+            # There are better ways of doing this entire block. Also it might be slow
             for post_id in values['id'].values:
-                if (time.time() - values.loc[values['id'] == post_id]['created_utc'].iloc[0]) > config.POST_DROP_AFTER:
+                stopwatch.reset()
+
+                match_row = values.loc[values['id'] == post_id]
+                if (
+                 match_row['last_interval'].iloc[0] == len(config.POST_GET_INTERVALS) or
+                 (time.time() - match_row['post_pickup'].iloc[0]) < (config.POST_GET_INTERVALS[match_row['last_interval'].iloc[0]] * 3600)
+                ):
                     continue
                 post = r.submission(post_id)
                 for _a in p_attr:
@@ -95,25 +106,39 @@ def main():
                 for _s in s_attr:
                     row[_s].append(getattr(s, _s))
                 row['time_now'].append(time.time())
+                row['last_interval'].append(values.loc[values['id'] == post_id]['last_interval'] + 1)
+                row['post_pickup'].append(match_row['post_pickup'])
+
+                if stopwatch.mark() > 2.5 * len(values.index):
+                    logger.warning(f'Warning: Slow iteration, {stopwatch.mark()} secs for {len(values.index)} items')
 
             for post in s.new(limit=config.POST_GET_LIMIT):
-                if post.id in values['id'].values:
+                if post.id in df['id'].values:
                     break
                 for _a in p_attr:
                     row_new[_a].append(getattr(post, _a))
                 for _s in s_attr:
                     row_new[_s].append(getattr(s, _s))
                 row_new['time_now'].append(time.time())
+                row_new['last_interval'].append(0)
+                row_new['post_pickup'].append(time.time())
 
-            df = df.append(pd.DataFrame(row_new, columns=attr), ignore_index=True)
-            df = df.append(pd.DataFrame(row, columns=attr), ignore_index=True)
-            df.drop_duplicates(subset=['id', 'ups', 'downs'], inplace=True)
-            df.to_csv(config.DATAFILE, index=False)
+            df_new = df.append(pd.DataFrame(row_new, columns=attr), ignore_index=True)
+            df_row = df.append(pd.DataFrame(row, columns=attr), ignore_index=True)
+
+            if df.equals(df_new) and df.equals(df_row):
+                modified = False
+            else:
+                modified = True
+                df = pd.concat([df, df_new, df_row], ignore_index=True)
+                df.drop_duplicates(subset=['id', 'ups', 'downs'], inplace=True)
+                if not config.DRY_RUN:
+                    df.drop(['last_interval', 'post_pickup'], axis=1).to_csv(config.DATAFILE, index=False)
 
         except prawcore.exceptions.RequestException:  # You most likely do not need this
             retries += 1
             if retries < len(config.TIMEOUTS):
-                logger.warning(f'Could not establish connection. Waiting for {config.TIMEOUTS[retries-1]} sec...')
+                logger.warning(f'Connection lost. Waiting for {config.TIMEOUTS[retries-1]} sec...')
                 time.sleep(config.TIMEOUTS[retries-1])
             else:
                 logger.critical('Max retries exceeded. Exiting.')
@@ -127,24 +152,36 @@ def main():
             if retries:
                 logger.info('Connection reestablished')
                 retries = 0
-            logger.info(f'Currently {len(df.index)} entries in dataframe, {len(df.drop_duplicates(subset=["id"]).index)} unique')
+
+            if modified:
+                logger.info(f'{len(df.index)} entries, {len(df.drop_duplicates(subset=["id"]).index)} unique')
 
         finally:
             rem = r.auth.limits['remaining']
             res = r.auth.limits['reset_timestamp'] - time.time()
-            if rem > 5:
-                logger.info(f'{rem:.0f} calls remaining, {res:.0f} till next reset')
+            if rem < 5:
+                logger.warning('Out of calls! Waiting...')
+                for _ in range(int(res + 1)):
+                    time.sleep(1)
+                    if kill_check():
+                        killed = True
+                    else:
+                        killed = False
+
+                if (res - config.TIMEOUT_SECS) > 0 and not killed:
+                    for _ in range(int(res - config.TIMEOUT_SECS)):
+                        time.sleep(1)
+                        if kill_check():
+                            break
+            else:
+                if modified:
+                    logger.info(f'{rem:.0f} calls remaining, {res:.0f} till next reset')
                 for _ in range(config.TIMEOUT_SECS):
                     time.sleep(1)
                     if kill_check():
                         break
-            else:
-                logger.warning('Out of calls! Waiting...')
-                for _ in range(int(res) + 1):
-                    time.sleep(1)
-                    if kill_check():
-                        break
 
+            # Note to self:
             # No, you do not have to 'if handler.killed: break', it's a while loop
 
 if __name__ == "__main__":

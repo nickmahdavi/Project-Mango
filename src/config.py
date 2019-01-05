@@ -1,15 +1,26 @@
 import os
 import time
+import numpy
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-DRY_RUN         = 0
-WIPE_LOGS       = 1
-WIPE_DATA       = 0
-POST_GET_LIMIT  = 5
-MAX_RETRIES     = 8
-TIMEOUT_SECS    = 10
-POST_DROP_AFTER = 127800
+DRY_RUN     = 0
+WIPE_LOGS   = 1
+WIPE_DATA   = 1
+MAX_RETRIES = 8
+QUICK_RUN   = 0    
+
+TIMEOUT_SECS       = 10
+POST_GET_LIMIT     = 5
+if QUICK_RUN:
+    POST_GET_INTERVALS = [60 * x for x in [1/12, 1/6, 1/3, 1/2, 3/4, 1,
+                                           2, 5, 10, 15, 24,
+                                           30, 36, 42, 48, 60, 72]]  # Hours
+else:
+    POST_GET_INTERVALS = [3600 * x for x in [1/12, 1/6, 1/3, 1/2, 3/4, 1,
+                                             2, 5, 10, 15, 24,
+                                             30, 36, 42, 48, 60, 72]]  # Hours
+    
 
 DATAFILE = os.path.abspath('../data/data.csv')
 LOGFILE  = os.path.abspath('../data/log.log')
@@ -27,7 +38,6 @@ TIMEOUTS = [2, 5, 10, 15, 20, 30, 60]
 ATTR     = ['id',
             'num_comments',
             'title',
-            'selftext',
             'author',
             'created_utc',
             'ups',
@@ -37,6 +47,11 @@ ATTR     = ['id',
 
 S_ATTR   = ['active_user_count',
             'subscribers']
+
+X_ATTR   = ['time_now',
+            'last_interval',
+            'post_pickup'
+            ]
 
 # ----------------------------------------------------- #
 
