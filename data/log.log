@@ -1,0 +1,443 @@
+main.py | 2019-01-20 20:06:25.436 INFO @ 51: -- 2019-01-20 20:06:25 on darwin, pid 99616
+main.py | 2019-01-20 20:06:25.437 INFO @ 52: -- Reading from LifeProTips; for more inforation see config.py.
+main.py | 2019-01-20 20:06:26.794 INFO @ 166: 5 entries, 5 unique
+main.py | 2019-01-20 20:06:26.794 INFO @ 187: 590 calls remaining, 214 till next reset
+main.py | 2019-01-20 20:06:36.829 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:06:36.830 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:06:36.830 INFO @ 105: Current post has been queued for 10.055310249328613 seconds, out of 1080000.0
+main.py | 2019-01-20 20:06:36.831 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:06:36.831 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:06:36.831 INFO @ 105: Current post has been queued for 10.056464195251465 seconds, out of 1080000.0
+main.py | 2019-01-20 20:06:36.832 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:06:36.832 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:06:36.832 INFO @ 105: Current post has been queued for 10.057575225830078 seconds, out of 1080000.0
+main.py | 2019-01-20 20:06:36.833 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:06:36.833 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:06:36.833 INFO @ 105: Current post has been queued for 10.05876612663269 seconds, out of 1080000.0
+main.py | 2019-01-20 20:06:36.834 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:06:36.835 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:06:36.835 INFO @ 105: Current post has been queued for 10.060168027877808 seconds, out of 1080000.0
+main.py | 2019-01-20 20:06:47.067 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:06:47.067 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:06:47.067 INFO @ 105: Current post has been queued for 20.292423009872437 seconds, out of 1080000.0
+main.py | 2019-01-20 20:06:47.068 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:06:47.068 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:06:47.068 INFO @ 105: Current post has been queued for 20.293684005737305 seconds, out of 1080000.0
+main.py | 2019-01-20 20:06:47.069 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:06:47.069 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:06:47.069 INFO @ 105: Current post has been queued for 20.29444932937622 seconds, out of 1080000.0
+main.py | 2019-01-20 20:06:47.070 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:06:47.070 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:06:47.070 INFO @ 105: Current post has been queued for 20.29515027999878 seconds, out of 1080000.0
+main.py | 2019-01-20 20:06:47.070 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:06:47.070 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:06:47.070 INFO @ 105: Current post has been queued for 20.295809984207153 seconds, out of 1080000.0
+main.py | 2019-01-20 20:06:57.785 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:06:57.785 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:06:57.785 INFO @ 105: Current post has been queued for 31.0110080242157 seconds, out of 1080000.0
+main.py | 2019-01-20 20:06:57.786 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:06:57.787 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:06:57.787 INFO @ 105: Current post has been queued for 31.012121200561523 seconds, out of 1080000.0
+main.py | 2019-01-20 20:06:57.787 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:06:57.787 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:06:57.787 INFO @ 105: Current post has been queued for 31.012895107269287 seconds, out of 1080000.0
+main.py | 2019-01-20 20:06:57.788 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:06:57.788 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:06:57.788 INFO @ 105: Current post has been queued for 31.013602256774902 seconds, out of 1080000.0
+main.py | 2019-01-20 20:06:57.789 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:06:57.789 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:06:57.789 INFO @ 105: Current post has been queued for 31.014265775680542 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:08.059 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:07:08.059 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:08.060 INFO @ 105: Current post has been queued for 41.28519296646118 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:08.061 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:07:08.061 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:08.061 INFO @ 105: Current post has been queued for 41.28661298751831 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:08.062 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:07:08.062 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:08.062 INFO @ 105: Current post has been queued for 41.28749322891235 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:08.063 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:07:08.063 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:08.063 INFO @ 105: Current post has been queued for 41.28842520713806 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:08.064 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:07:08.064 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:08.064 INFO @ 105: Current post has been queued for 41.28967785835266 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:18.277 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:07:18.277 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:18.277 INFO @ 105: Current post has been queued for 51.50236392021179 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:18.278 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:07:18.278 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:18.278 INFO @ 105: Current post has been queued for 51.50347900390625 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:18.279 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:07:18.279 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:18.279 INFO @ 105: Current post has been queued for 51.50445222854614 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:18.280 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:07:18.280 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:18.280 INFO @ 105: Current post has been queued for 51.50513935089111 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:18.280 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:07:18.280 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:18.280 INFO @ 105: Current post has been queued for 51.50577998161316 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:28.560 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:07:28.560 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:28.560 INFO @ 105: Current post has been queued for 61.78543400764465 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:28.561 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:07:28.561 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:28.561 INFO @ 105: Current post has been queued for 61.78638696670532 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:28.562 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:07:28.562 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:28.562 INFO @ 105: Current post has been queued for 61.787392139434814 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:28.563 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:07:28.563 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:28.563 INFO @ 105: Current post has been queued for 61.78841805458069 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:28.564 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:07:28.564 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:28.564 INFO @ 105: Current post has been queued for 61.78948211669922 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:39.167 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:07:39.168 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:39.168 INFO @ 105: Current post has been queued for 72.39321208000183 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:39.168 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:07:39.168 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:39.168 INFO @ 105: Current post has been queued for 72.39391803741455 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:39.169 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:07:39.169 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:39.169 INFO @ 105: Current post has been queued for 72.39464020729065 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:39.171 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:07:39.171 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:39.171 INFO @ 105: Current post has been queued for 72.39623928070068 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:39.172 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:07:39.172 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:39.172 INFO @ 105: Current post has been queued for 72.3976321220398 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:49.592 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:07:49.594 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:49.594 INFO @ 105: Current post has been queued for 82.81965804100037 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:49.595 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:07:49.595 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:49.595 INFO @ 105: Current post has been queued for 82.82039189338684 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:49.596 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:07:49.596 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:49.596 INFO @ 105: Current post has been queued for 82.82120323181152 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:49.596 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:07:49.596 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:49.597 INFO @ 105: Current post has been queued for 82.82188320159912 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:49.597 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:07:49.597 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:49.597 INFO @ 105: Current post has been queued for 82.82253193855286 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:59.875 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:07:59.875 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:59.876 INFO @ 105: Current post has been queued for 93.1010410785675 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:59.876 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:07:59.877 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:59.877 INFO @ 105: Current post has been queued for 93.10213088989258 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:59.878 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:07:59.879 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:59.879 INFO @ 105: Current post has been queued for 93.10409426689148 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:59.880 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:07:59.880 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:59.880 INFO @ 105: Current post has been queued for 93.10524916648865 seconds, out of 1080000.0
+main.py | 2019-01-20 20:07:59.881 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:07:59.881 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:07:59.882 INFO @ 105: Current post has been queued for 93.10685801506042 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:10.116 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:08:10.117 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:10.118 INFO @ 105: Current post has been queued for 103.34300017356873 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:10.120 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:08:10.120 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:10.121 INFO @ 105: Current post has been queued for 103.34599614143372 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:10.122 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:08:10.122 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:10.122 INFO @ 105: Current post has been queued for 103.34764313697815 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:10.124 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:08:10.124 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:10.124 INFO @ 105: Current post has been queued for 103.34916305541992 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:10.126 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:08:10.126 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:10.126 INFO @ 105: Current post has been queued for 103.3515989780426 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:21.171 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:08:21.172 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:21.172 INFO @ 105: Current post has been queued for 114.39738082885742 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:21.173 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:08:21.173 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:21.173 INFO @ 105: Current post has been queued for 114.39857220649719 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:21.174 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:08:21.174 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:21.174 INFO @ 105: Current post has been queued for 114.39981722831726 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:21.176 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:08:21.176 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:21.176 INFO @ 105: Current post has been queued for 114.40149331092834 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:21.177 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:08:21.177 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:21.177 INFO @ 105: Current post has been queued for 114.40230083465576 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:31.407 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:08:31.409 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:31.410 INFO @ 105: Current post has been queued for 124.6350769996643 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:31.412 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:08:31.412 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:31.413 INFO @ 105: Current post has been queued for 124.63809108734131 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:31.414 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:08:31.414 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:31.414 INFO @ 105: Current post has been queued for 124.63961815834045 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:31.415 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:08:31.415 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:31.416 INFO @ 105: Current post has been queued for 124.64088225364685 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:31.417 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:08:31.417 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:31.417 INFO @ 105: Current post has been queued for 124.64219975471497 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:41.945 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:08:41.945 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:41.945 INFO @ 105: Current post has been queued for 135.1707570552826 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:41.946 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:08:41.946 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:41.946 INFO @ 105: Current post has been queued for 135.1718032360077 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:41.947 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:08:41.947 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:41.947 INFO @ 105: Current post has been queued for 135.17256498336792 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:41.948 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:08:41.948 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:41.948 INFO @ 105: Current post has been queued for 135.17326736450195 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:41.948 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:08:41.949 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:41.949 INFO @ 105: Current post has been queued for 135.17395687103271 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:52.531 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:08:52.532 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:52.533 INFO @ 105: Current post has been queued for 145.75808119773865 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:52.533 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:08:52.533 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:52.533 INFO @ 105: Current post has been queued for 145.7587583065033 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:52.534 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:08:52.534 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:52.534 INFO @ 105: Current post has been queued for 145.75941729545593 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:52.535 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:08:52.535 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:52.535 INFO @ 105: Current post has been queued for 145.760103225708 seconds, out of 1080000.0
+main.py | 2019-01-20 20:08:52.535 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:08:52.535 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:08:52.535 INFO @ 105: Current post has been queued for 145.76078605651855 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:02.837 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:09:02.837 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:02.837 INFO @ 105: Current post has been queued for 156.06281805038452 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:02.838 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:09:02.838 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:02.838 INFO @ 105: Current post has been queued for 156.0634961128235 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:02.839 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:09:02.839 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:02.839 INFO @ 105: Current post has been queued for 156.06422233581543 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:02.839 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:09:02.840 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:02.840 INFO @ 105: Current post has been queued for 156.0649311542511 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:02.840 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:09:02.840 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:02.840 INFO @ 105: Current post has been queued for 156.06559586524963 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:13.056 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:09:13.056 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:13.056 INFO @ 105: Current post has been queued for 166.28164887428284 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:13.057 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:09:13.057 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:13.057 INFO @ 105: Current post has been queued for 166.28258514404297 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:13.058 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:09:13.058 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:13.058 INFO @ 105: Current post has been queued for 166.2835292816162 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:13.059 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:09:13.059 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:13.059 INFO @ 105: Current post has been queued for 166.28427124023438 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:13.060 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:09:13.060 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:13.060 INFO @ 105: Current post has been queued for 166.2850058078766 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:23.280 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:09:23.280 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:23.280 INFO @ 105: Current post has been queued for 176.50574588775635 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:23.281 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:09:23.281 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:23.281 INFO @ 105: Current post has been queued for 176.50674104690552 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:23.282 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:09:23.282 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:23.282 INFO @ 105: Current post has been queued for 176.50749516487122 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:23.283 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:09:23.283 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:23.283 INFO @ 105: Current post has been queued for 176.50822925567627 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:23.283 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:09:23.284 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:23.284 INFO @ 105: Current post has been queued for 176.50896382331848 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:33.519 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:09:33.520 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:33.520 INFO @ 105: Current post has been queued for 186.74514317512512 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:33.520 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:09:33.520 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:33.520 INFO @ 105: Current post has been queued for 186.74581813812256 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:33.521 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:09:33.521 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:33.521 INFO @ 105: Current post has been queued for 186.74654531478882 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:33.522 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:09:33.522 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:33.522 INFO @ 105: Current post has been queued for 186.7472801208496 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:33.523 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:09:33.523 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:33.523 INFO @ 105: Current post has been queued for 186.7480549812317 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:43.791 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:09:43.791 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:43.791 INFO @ 105: Current post has been queued for 197.01686191558838 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:43.792 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:09:43.792 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:43.792 INFO @ 105: Current post has been queued for 197.01771593093872 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:43.793 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:09:43.793 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:43.793 INFO @ 105: Current post has been queued for 197.01862120628357 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:43.794 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:09:43.794 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:43.794 INFO @ 105: Current post has been queued for 197.01953530311584 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:43.795 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:09:43.795 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:43.795 INFO @ 105: Current post has been queued for 197.02044296264648 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:54.147 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:09:54.148 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:54.148 INFO @ 105: Current post has been queued for 207.3732089996338 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:54.148 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:09:54.148 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:54.148 INFO @ 105: Current post has been queued for 207.3739070892334 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:54.149 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:09:54.149 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:54.149 INFO @ 105: Current post has been queued for 207.3745472431183 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:54.150 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:09:54.150 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:54.150 INFO @ 105: Current post has been queued for 207.37517833709717 seconds, out of 1080000.0
+main.py | 2019-01-20 20:09:54.150 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:09:54.150 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:09:54.150 INFO @ 105: Current post has been queued for 207.37580800056458 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:06.237 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:10:06.237 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:06.237 INFO @ 105: Current post has been queued for 219.46253395080566 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:06.239 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:10:06.239 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:06.239 INFO @ 105: Current post has been queued for 219.46449422836304 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:06.240 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:10:06.240 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:06.240 INFO @ 105: Current post has been queued for 219.46554613113403 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:06.241 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:10:06.241 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:06.241 INFO @ 105: Current post has been queued for 219.46663427352905 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:06.242 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:10:06.242 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:06.242 INFO @ 105: Current post has been queued for 219.46775603294373 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:16.473 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:10:16.474 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:16.474 INFO @ 105: Current post has been queued for 229.69924688339233 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:16.477 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:10:16.478 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:16.478 INFO @ 105: Current post has been queued for 229.7038221359253 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:16.479 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:10:16.480 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:16.480 INFO @ 105: Current post has been queued for 229.70516729354858 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:16.481 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:10:16.481 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:16.481 INFO @ 105: Current post has been queued for 229.70647501945496 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:16.482 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:10:16.484 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:16.484 INFO @ 105: Current post has been queued for 229.7092728614807 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:26.676 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:10:26.676 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:26.676 INFO @ 105: Current post has been queued for 239.90134501457214 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:26.677 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:10:26.677 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:26.677 INFO @ 105: Current post has been queued for 239.90267395973206 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:26.678 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:10:26.679 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:26.679 INFO @ 105: Current post has been queued for 239.90401935577393 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:26.682 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:10:26.682 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:26.683 INFO @ 105: Current post has been queued for 239.90793228149414 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:26.686 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:10:26.687 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:26.688 INFO @ 105: Current post has been queued for 239.91287994384766 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:37.055 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:10:37.055 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:37.055 INFO @ 105: Current post has been queued for 250.2806990146637 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:37.056 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:10:37.057 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:37.057 INFO @ 105: Current post has been queued for 250.2820999622345 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:37.058 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:10:37.058 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:37.058 INFO @ 105: Current post has been queued for 250.28353118896484 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:37.059 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:10:37.059 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:37.059 INFO @ 105: Current post has been queued for 250.28484916687012 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:37.061 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:10:37.061 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:37.061 INFO @ 105: Current post has been queued for 250.28612685203552 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:48.210 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:10:48.210 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:48.210 INFO @ 105: Current post has been queued for 261.4356451034546 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:48.211 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:10:48.211 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:48.211 INFO @ 105: Current post has been queued for 261.4362938404083 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:48.211 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:10:48.212 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:48.212 INFO @ 105: Current post has been queued for 261.43696427345276 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:48.212 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:10:48.213 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:48.213 INFO @ 105: Current post has been queued for 261.43809819221497 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:48.217 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:10:48.217 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:48.217 INFO @ 105: Current post has been queued for 261.44220495224 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:58.562 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:10:58.562 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:58.562 INFO @ 105: Current post has been queued for 271.78744983673096 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:58.563 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:10:58.563 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:58.563 INFO @ 105: Current post has been queued for 271.7883241176605 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:58.564 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:10:58.564 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:58.564 INFO @ 105: Current post has been queued for 271.7893171310425 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:58.565 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:10:58.565 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:58.565 INFO @ 105: Current post has been queued for 271.79014325141907 seconds, out of 1080000.0
+main.py | 2019-01-20 20:10:58.565 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:10:58.566 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:10:58.566 INFO @ 105: Current post has been queued for 271.79106998443604 seconds, out of 1080000.0
+main.py | 2019-01-20 20:11:08.798 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:11:08.799 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:11:08.799 INFO @ 105: Current post has been queued for 282.0242130756378 seconds, out of 1080000.0
+main.py | 2019-01-20 20:11:08.800 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:11:08.800 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:11:08.800 INFO @ 105: Current post has been queued for 282.02541399002075 seconds, out of 1080000.0
+main.py | 2019-01-20 20:11:08.801 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:11:08.801 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:11:08.801 INFO @ 105: Current post has been queued for 282.02649545669556 seconds, out of 1080000.0
+main.py | 2019-01-20 20:11:08.802 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:11:08.802 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:11:08.802 INFO @ 105: Current post has been queued for 282.02773809432983 seconds, out of 1080000.0
+main.py | 2019-01-20 20:11:08.803 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:11:08.803 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:11:08.804 INFO @ 105: Current post has been queued for 282.02886605262756 seconds, out of 1080000.0
+main.py | 2019-01-20 20:11:19.141 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:11:19.141 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:11:19.142 INFO @ 105: Current post has been queued for 292.36709094047546 seconds, out of 1080000.0
+main.py | 2019-01-20 20:11:19.142 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:11:19.143 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:11:19.143 INFO @ 105: Current post has been queued for 292.36816215515137 seconds, out of 1080000.0
+main.py | 2019-01-20 20:11:19.144 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:11:19.144 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:11:19.144 INFO @ 105: Current post has been queued for 292.36933612823486 seconds, out of 1080000.0
+main.py | 2019-01-20 20:11:19.145 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:11:19.145 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:11:19.145 INFO @ 105: Current post has been queued for 292.37046122550964 seconds, out of 1080000.0
+main.py | 2019-01-20 20:11:19.146 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:11:19.146 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:11:19.146 INFO @ 105: Current post has been queued for 292.3715908527374 seconds, out of 1080000.0
+main.py | 2019-01-20 20:11:30.245 INFO @ 103: Current post ID is ai61az
+main.py | 2019-01-20 20:11:30.245 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:11:30.245 INFO @ 105: Current post has been queued for 303.47087812423706 seconds, out of 1080000.0
+main.py | 2019-01-20 20:11:30.246 INFO @ 103: Current post ID is ai5x6o
+main.py | 2019-01-20 20:11:30.247 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:11:30.247 INFO @ 105: Current post has been queued for 303.47214913368225 seconds, out of 1080000.0
+main.py | 2019-01-20 20:11:30.248 INFO @ 103: Current post ID is ai5x1v
+main.py | 2019-01-20 20:11:30.248 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:11:30.248 INFO @ 105: Current post has been queued for 303.4737820625305 seconds, out of 1080000.0
+main.py | 2019-01-20 20:11:30.250 INFO @ 103: Current post ID is ai5v97
+main.py | 2019-01-20 20:11:30.250 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:11:30.250 INFO @ 105: Current post has been queued for 303.4757242202759 seconds, out of 1080000.0
+main.py | 2019-01-20 20:11:30.251 INFO @ 103: Current post ID is ai5pb4
+main.py | 2019-01-20 20:11:30.251 INFO @ 104: Current pickup # is 0 out of 17
+main.py | 2019-01-20 20:11:30.252 INFO @ 105: Current post has been queued for 303.4769048690796 seconds, out of 1080000.0
+main.py | 2019-01-20 20:11:34.627 INFO @ 63: Received kill signal SIGINT (code 2)
+main.py | 2019-01-20 20:11:34.627 INFO @ 65: Writing dataframe to .CSV
+main.py | 2019-01-20 20:11:34.633 INFO @ 73: Successfully wrote dataframe.
+main.py | 2019-01-20 20:11:34.633 INFO @ 74: Exited.

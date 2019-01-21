@@ -13,11 +13,11 @@ QUICK_RUN   = 0
 TIMEOUT_SECS       = 10
 POST_GET_LIMIT     = 5
 if QUICK_RUN:
-    POST_GET_INTERVALS = [60 * x for x in [1/12, 1/6, 1/3, 1/2, 3/4, 1,
+    POST_PICKUPS = [60 * x for x in [1/12, 1/6, 1/3, 1/2, 3/4, 1,
                                            2, 5, 10, 15, 24,
                                            30, 36, 42, 48, 60, 72]]  # Hours
 else:
-    POST_GET_INTERVALS = [3600 * x for x in [1/12, 1/6, 1/3, 1/2, 3/4, 1,
+    POST_PICKUPS = [3600 * x for x in [1/12, 1/6, 1/3, 1/2, 3/4, 1,
                                              2, 5, 10, 15, 24,
                                              30, 36, 42, 48, 60, 72]]  # Hours
     
