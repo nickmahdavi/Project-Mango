@@ -84,28 +84,26 @@ def main():
         try:
             if retries:
                 logger.info(f"Attempting to retry, attempt {retries}...")
-    
-            row = dict((a, []) for a in attr)
-            row_new = dict((a, []) for a in attr)
 
             values = df.drop_duplicates(subset=['id'], keep='last')
+
+            row = dict((a, []) for a in attr)
     
             # There are better ways of doing this entire block. Also it might be slow
             for post_id in values['id'].values:
                 stopwatch.reset()
 
-                TIME_FACTOR = 60 if config.QUICK_RUN else 3600
                 match_row = values.loc[values['id'] == post_id]
                 iteration = match_row['last_interval'].iloc[0]
                 pickup = match_row['post_pickup'].iloc[0]
     
                 logger.info(f"Current post ID is {post_id}")
                 logger.info(f"Current pickup # is {match_row['last_interval'].iloc[0]} out of {len(config.POST_PICKUPS)}")
-                logger.info(f"Current post has been queued for {(time.time() - pickup)} seconds, out of {(config.POST_PICKUPS[iteration] * TIME_FACTOR)}")
+                logger.info(f"Current post has been queued for {(time.time() - pickup)} seconds, out of {(config.POST_PICKUPS[iteration])}")
  
                 if iteration == len(config.POST_PICKUPS):
                     continue
-                if (time.time() - pickup) < (config.POST_PICKUPS[iteration] * TIME_FACTOR):
+                if (time.time() - pickup) < config.POST_PICKUPS[iteration]:
                     continue
 
                 post = r.submission(post_id)
@@ -114,13 +112,15 @@ def main():
                 for _s in s_attr:
                     row[_s].append(getattr(s, _s))
                 row['time_now'].append(time.time())
-                row['last_interval'].append(values.loc[values['id'] == post_id]['last_interval'] + 1)
-                row['post_pickup'].append(match_row['post_pickup'])
+                row['last_interval'].append(iteration + 1)
+                row['post_pickup'].append(pickup)
 
                 # MAGIC NUMBER 2.5: don't know just threw it in there
                 # it's a good estimate for how long it should take to get a post
                 if stopwatch.mark() > 2.5 * len(values.index):
                     logger.warning(f'Warning: Slow iteration, {stopwatch.mark()} secs for {len(values.index)} items')
+
+            row_new = dict((a, []) for a in attr)
 
             for post in s.new(limit=config.POST_GET_LIMIT):
                 if post.id in df['id'].values:
@@ -134,13 +134,13 @@ def main():
                 row_new['post_pickup'].append(time.time())
 
             df_new = df.append(pd.DataFrame(row_new, columns=attr), ignore_index=True)
-            df_row = df.append(pd.DataFrame(row, columns=attr), ignore_index=True)
+            df_update = df.append(pd.DataFrame(row, columns=attr), ignore_index=True)
 
-            if df.equals(df_new) and df.equals(df_row):
+            if df.equals(df_new) and df.equals(df_update):
                 modified = False
             else:
                 modified = True
-                df = pd.concat([df, df_new, df_row], ignore_index=True)
+                df = pd.concat([df, df_new, df_update], ignore_index=True)
                 df.drop_duplicates(subset=['id', 'ups', 'downs'], inplace=True)
                 if not config.DRY_RUN:
                     df.drop(['last_interval', 'post_pickup'], axis=1).to_csv(config.DATAFILE, index=False)
