@@ -8,7 +8,7 @@ DRY_RUN     = 0
 WIPE_LOGS   = 1
 WIPE_DATA   = 1
 MAX_RETRIES = 8
-QUICK_RUN   = 0    
+QUICK_RUN   = 0
 
 TIMEOUT_SECS       = 10
 POST_GET_LIMIT     = 5
