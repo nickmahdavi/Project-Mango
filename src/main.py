@@ -87,6 +87,8 @@ def main():
             values = df.sort_values('pickup_no', ascending=False).drop_duplicates(subset=['id']).sort_index().reset_index(drop=True)
 
             row = dict((a, []) for a in attr)
+
+            logger.info(f'{len(values)} unique values')
     
             # There are better ways of doing this entire block. Also it might be slow
             for post_id in values['id'].values:
@@ -95,19 +97,16 @@ def main():
                 match_row = values.loc[values['id'] == post_id]
                 iteration = match_row['pickup_no'].iloc[0]
                 pickup = match_row['post_pickup'].iloc[0]
-    
-                logger.info(f"Current post ID is {post_id}")
-                logger.info(f"Current pickup # is {match_row['pickup_no'].iloc[0]} out of {len(config.POST_PICKUPS)}")
+
+                logger.info(f"{post_id}: queued for {(time.time() - pickup)} / {(config.POST_PICKUPS[iteration])} secs")
+                logger.info(f"p# is {match_row['pickup_no'].iloc[0]} / {len(config.POST_PICKUPS)}")
  
                 if iteration == len(config.POST_PICKUPS):
                     logger.info("Hit final iteration, dropping")
                     continue
 
                 if (time.time() - pickup) < config.POST_PICKUPS[iteration]:
-                    logger.info(f"Current post has been queued for {(time.time() - pickup)} seconds, out of {(config.POST_PICKUPS[iteration])}, not long enough")
                     continue
-
-                logger.info(f"Current post has been queued for {(time.time() - pickup)} seconds, >= to {(config.POST_PICKUPS[iteration])}")
 
                 post = r.submission(post_id)
                 for _a in p_attr:
@@ -126,9 +125,12 @@ def main():
             row_new = dict((a, []) for a in attr)
 
             for post in s.new(limit=config.POST_GET_LIMIT):
-                logger.info(f"Picked up {post.id}")
                 if post.id in df['id'].values:
+                    logger.info(f"{post.id} is a duplicate, continuing")
                     continue
+
+                logger.info(f"Picked up {post.id}")
+                
                 for _a in p_attr:
                     row_new[_a].append(getattr(post, _a))
                 for _s in s_attr:
@@ -137,17 +139,21 @@ def main():
                 row_new['pickup_no'].append(0)
                 row_new['post_pickup'].append(time.time())
 
-            df_new = df.append(pd.DataFrame(row_new, columns=attr), ignore_index=True)
-            df_update = df.append(pd.DataFrame(row, columns=attr), ignore_index=True)
+            logger.info(f"Old row has {len(row['id'])}")
+            logger.info(f"New row has {len(row_new['id'])}")
 
-            if df.equals(df_new) and df.equals(df_update):
-                logger.info("No change")
+            df_new = pd.DataFrame(row_new, columns=attr)
+            df_update = pd.DataFrame(row, columns=attr)
+
+            if df.equals(df.append(df_new)) and df.equals(df.append(df_update)):
                 modified = False
             else:
                 modified = True
                 df = pd.concat([df, df_new, df_update], ignore_index=True)
                 if not config.DRY_RUN:
                     df.drop(['pickup_no', 'post_pickup'], axis=1).to_csv(config.DATAFILE, index=False)
+
+            logger.info(len(df.index))
 
         except prawcore.exceptions.RequestException:  # You most likely do not need this
             retries += 1
