@@ -155,6 +155,11 @@ def main():
 
             logger.info(len(df.index))
 
+            del row
+            del row_new
+            del df_new
+            del df_update
+
         except prawcore.exceptions.RequestException:  # You most likely do not need this
             retries += 1
             if retries < len(config.TIMEOUTS):

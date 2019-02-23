@@ -10,8 +10,9 @@ WIPE_DATA   = 1
 MAX_RETRIES = 8
 QUICK_RUN   = 0
 
-TIMEOUT_SECS       = 10
-POST_GET_LIMIT     = 5
+TIMEOUT_SECS   = 10
+POST_GET_LIMIT = 5
+
 if QUICK_RUN:
     POST_PICKUPS = [60 * x for x in [1/12, 1/6, 1/3, 1/2, 3/4, 1,
                                            2, 5, 10, 15, 24,
@@ -21,37 +22,36 @@ else:
                                              2, 5, 10, 15, 24,
                                              30, 36, 42, 48, 60, 72]]  # Hours
     
-
 DATAFILE = os.path.abspath('../data/data.csv')
 LOGFILE  = os.path.abspath('../data/log.log')
 
 SUBREDDIT = 'LifeProTips'  # Find a better subreddit
 
-CLIENT_ID      = os.environ['CLIENT_ID']
-CLIENT_SECRET  = os.environ['CLIENT_SECRET']
-PASSWORD       = os.environ['BOT_PASSWORD']
-USERNAME       = os.environ['BOT_USERNAME']
-USER_AGENT     = os.environ['USER_AGENT']
+CLIENT_ID     = os.environ['CLIENT_ID']
+CLIENT_SECRET = os.environ['CLIENT_SECRET']
+PASSWORD      = os.environ['BOT_PASSWORD']
+USERNAME      = os.environ['BOT_USERNAME']
+USER_AGENT    = os.environ['USER_AGENT']
 
 TIMEOUTS = [2, 5, 10, 15, 20, 30, 60]
 
-ATTR     = ['id',
-            'num_comments',
-            'title',
-            'author',
-            'created_utc',
-            'ups',
-            'downs',
-            'edited'
-            ]
+ATTR    = ['id',
+          'num_comments',
+          'title',
+          'author',
+          'created_utc',
+          'ups',
+          'downs',
+          'edited'
+          ]
 
-S_ATTR   = ['active_user_count',
-            'subscribers']
+S_ATTR = ['active_user_count',
+          'subscribers']
 
-X_ATTR   = ['time_now',
-            'last_interval',
-            'post_pickup'
-            ]
+X_ATTR = ['time_now',
+          'last_interval',
+          'post_pickup'
+          ]
 
 # ----------------------------------------------------- #
 
