@@ -64,7 +64,8 @@ def main():
             if not config.DRY_RUN:
                 logger.info("Writing dataframe to .CSV")
                 try:
-                    df.drop(['pickup_no', 'post_pickup'], axis=1).to_csv(config.DATAFILE, index=False)
+                    # df.drop(['pickup_no'], axis=1).to_csv(config.DATAFILE, index=False)
+                    df.to_csv(config.DATAFILE, index=False)
                 except Exception:
                     logger.warning(get_error())
                     logger.warning("Failed to write to CSV.")
@@ -108,14 +109,16 @@ def main():
                     logger.debug("Not long enough")
                     continue
 
+                logger.debug("Post has passed threshold, reading information")
+
                 post = r.submission(post_id)
                 for _a in p_attr:
                     row[_a].append(getattr(post, _a))
                 for _s in s_attr:
                     row[_s].append(getattr(s, _s))
-                row['time_now'].append(time.time())
                 row['pickup_no'].append(iteration + 1)
                 row['post_pickup'].append(pickup)
+                row['time_now'].append(time.time())
 
                 # MAGIC NUMBER 2.5: don't know just threw it in there
                 # it's a good estimate for how long it should take to get a post
@@ -135,9 +138,9 @@ def main():
                     row_new[_a].append(getattr(post, _a))
                 for _s in s_attr:
                     row_new[_s].append(getattr(s, _s))
-                row_new['time_now'].append(time.time())
                 row_new['pickup_no'].append(0)
                 row_new['post_pickup'].append(time.time())
+                row_new['time_now'].append(time.time())
 
             logger.debug(f"Old row has {len(row['id'])}")
             logger.debug(f"New row has {len(row_new['id'])}")
@@ -151,7 +154,8 @@ def main():
                 modified = True
                 df = pd.concat([df, df_new, df_update], ignore_index=True)
                 if not config.DRY_RUN:
-                    df.drop(['pickup_no', 'post_pickup'], axis=1).to_csv(config.DATAFILE, index=False)
+                    # df.drop(['pickup_no'], axis=1).to_csv(config.DATAFILE, index=False)
+                    df.to_csv(config.DATAFILE, index=False)
 
             logger.debug(len(df.index))
 
