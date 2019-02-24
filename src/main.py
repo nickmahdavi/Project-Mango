@@ -3,6 +3,7 @@ import time
 import os
 import sys
 import logging
+from logging.handlers import RotatingFileHandler 
 
 import praw
 import prawcore
@@ -21,7 +22,7 @@ FORMAT = '%(filename)s | %(asctime)s.%(msecs)03d %(levelname)s @ %(lineno)d: %(m
 DATEFMT = '%Y-%m-%d %H:%M:%S'
 
 logger = logging.getLogger(__name__)
-handler = logging.FileHandler(config.LOGFILE)
+handler = RotatingFileHandler(config.LOGFILE, mode="a", maxBytes=1024**3)
 formatter = logging.Formatter(FORMAT, datefmt=DATEFMT)
 logger.setLevel(config.LOG_LEVEL)
 handler.setLevel(config.LOG_LEVEL)
@@ -48,9 +49,6 @@ def auth():
 
 
 def main():
-    logger.info(f"-- {time.strftime('%Y-%m-%d %H:%M:%S')} on {sys.platform}, pid {os.getpid()}")
-    logger.info(f"-- Reading from {config.SUBREDDIT}; for more inforation see config.py.")
-
     r = auth()
     s = r.subreddit(config.SUBREDDIT)
     
@@ -88,8 +86,6 @@ def main():
             values = df.sort_values('pickup_no', ascending=False).drop_duplicates(subset=['id']).sort_index().reset_index(drop=True)
 
             row = dict((a, []) for a in attr)
-
-            logger.debug(f'{len(values)} unique values')
     
             # There are better ways of doing this entire block. Also it might be slow
             for post_id in values['id'].values:
@@ -99,17 +95,17 @@ def main():
                 iteration = match_row['pickup_no'].iloc[0]
                 pickup = match_row['post_pickup'].iloc[0]
 
-                logger.debug(f"{post_id}: {(time.time() - pickup)} / {(config.POST_PICKUPS[iteration])} secs, #{match_row['pickup_no'].iloc[0]} / {len(config.POST_PICKUPS)}")
+                logger.debug(f"{post_id}: {(time.time() - pickup)} / {(config.POST_PICKUPS[iteration])} secs, " \
+                             f"#{match_row['pickup_no'].iloc[0]} / {len(config.POST_PICKUPS)}")
  
                 if iteration == len(config.POST_PICKUPS):
                     logger.debug("Hit final iteration, dropping")
                     continue
 
                 if (time.time() - pickup) < config.POST_PICKUPS[iteration]:
-                    logger.debug("Not long enough")
                     continue
 
-                logger.debug("Post has passed threshold, reading information")
+                logger.debug("Post has passed threshold")
 
                 post = r.submission(post_id)
                 for _a in p_attr:
@@ -142,8 +138,7 @@ def main():
                 row_new['post_pickup'].append(time.time())
                 row_new['time_now'].append(time.time())
 
-            logger.debug(f"Old row has {len(row['id'])}")
-            logger.debug(f"New row has {len(row_new['id'])}")
+            logger.debug(f"Old {len(row['id'])} / new {len(row_new['id'])}")
 
             df_new = pd.DataFrame(row_new, columns=attr)
             df_update = pd.DataFrame(row, columns=attr)
@@ -186,6 +181,8 @@ def main():
                 logger.info(f"{len(df.index)} entries, {len(df.drop_duplicates(subset=['id']).index)} unique")
 
         finally:
+            logger.debug(f'{len(values)} unique values')
+
             rem = r.auth.limits['remaining']
             res = r.auth.limits['reset_timestamp'] - time.time()
             if rem < 5:
@@ -210,6 +207,8 @@ def main():
                     if kill_check():
                         break
 
+            logger.info(f"-- {time.strftime('%Y-%m-%d %H:%M:%S')} on {sys.platform}, pid {os.getpid()}")
+            logger.info(f"-- Reading from {config.SUBREDDIT}; for more inforation see config.py.\n")
             # No, you do not have to 'if handler.killed: break', it's a while loop
 
 if __name__ == "__main__":

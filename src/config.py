@@ -59,11 +59,11 @@ X_ATTR = ['time_now',
 
 # ----------------------------------------------------- #
 
-if WIPE_LOGS:
-    open(LOGFILE, 'w').close()
+if (not os.path.isfile(LOGFILE)) or WIPE_LOGS:
+    open(LOGFILE, 'w+').close()
 
-if WIPE_DATA:
-    open(DATAFILE, 'w').close()
+if (not os.path.isfile(DATAFILE)) or WIPE_DATA:
+    open(DATAFILE, 'w+').close()
 
 if os.path.getsize("../data/log.log") != 0:
     logname = '../data/log-' + str(int(time.time())) + '.log'
