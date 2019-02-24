@@ -23,8 +23,8 @@ DATEFMT = '%Y-%m-%d %H:%M:%S'
 logger = logging.getLogger(__name__)
 handler = logging.FileHandler(config.LOGFILE)
 formatter = logging.Formatter(FORMAT, datefmt=DATEFMT)
-logger.setLevel('INFO')
-handler.setLevel('INFO')
+logger.setLevel(config.LOG_LEVEL)
+handler.setLevel(config.LOG_LEVEL)
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 
@@ -88,7 +88,7 @@ def main():
 
             row = dict((a, []) for a in attr)
 
-            logger.info(f'{len(values)} unique values')
+            logger.debug(f'{len(values)} unique values')
     
             # There are better ways of doing this entire block. Also it might be slow
             for post_id in values['id'].values:
@@ -98,14 +98,14 @@ def main():
                 iteration = match_row['pickup_no'].iloc[0]
                 pickup = match_row['post_pickup'].iloc[0]
 
-                logger.info(f"{post_id}: queued for {(time.time() - pickup)} / {(config.POST_PICKUPS[iteration])} secs")
-                logger.info(f"p# is {match_row['pickup_no'].iloc[0]} / {len(config.POST_PICKUPS)}")
+                logger.debug(f"{post_id}: {(time.time() - pickup)} / {(config.POST_PICKUPS[iteration])} secs, #{match_row['pickup_no'].iloc[0]} / {len(config.POST_PICKUPS)}")
  
                 if iteration == len(config.POST_PICKUPS):
-                    logger.info("Hit final iteration, dropping")
+                    logger.debug("Hit final iteration, dropping")
                     continue
 
                 if (time.time() - pickup) < config.POST_PICKUPS[iteration]:
+                    logger.debug("Not long enough")
                     continue
 
                 post = r.submission(post_id)
@@ -126,10 +126,10 @@ def main():
 
             for post in s.new(limit=config.POST_GET_LIMIT):
                 if post.id in df['id'].values:
-                    logger.info(f"{post.id} is a duplicate, continuing")
+                    logger.debug(f"{post.id} is a duplicate, continuing")
                     continue
 
-                logger.info(f"Picked up {post.id}")
+                logger.debug(f"Picked up {post.id}")
                 
                 for _a in p_attr:
                     row_new[_a].append(getattr(post, _a))
@@ -139,8 +139,8 @@ def main():
                 row_new['pickup_no'].append(0)
                 row_new['post_pickup'].append(time.time())
 
-            logger.info(f"Old row has {len(row['id'])}")
-            logger.info(f"New row has {len(row_new['id'])}")
+            logger.debug(f"Old row has {len(row['id'])}")
+            logger.debug(f"New row has {len(row_new['id'])}")
 
             df_new = pd.DataFrame(row_new, columns=attr)
             df_update = pd.DataFrame(row, columns=attr)
@@ -153,7 +153,7 @@ def main():
                 if not config.DRY_RUN:
                     df.drop(['pickup_no', 'post_pickup'], axis=1).to_csv(config.DATAFILE, index=False)
 
-            logger.info(len(df.index))
+            logger.debug(len(df.index))
 
             del row
             del row_new

@@ -9,6 +9,7 @@ WIPE_LOGS   = 1
 WIPE_DATA   = 1
 MAX_RETRIES = 8
 QUICK_RUN   = 0
+LOG_LEVEL   = "DEBUG"
 
 TIMEOUT_SECS   = 10
 POST_GET_LIMIT = 5
@@ -25,7 +26,7 @@ else:
 DATAFILE = os.path.abspath('../data/data.csv')
 LOGFILE  = os.path.abspath('../data/log.log')
 
-SUBREDDIT = 'LifeProTips'  # Find a better subreddit
+SUBREDDIT = 'AskReddit'  # Find a better subreddit
 
 CLIENT_ID     = os.environ['CLIENT_ID']
 CLIENT_SECRET = os.environ['CLIENT_SECRET']
@@ -35,18 +36,21 @@ USER_AGENT    = os.environ['USER_AGENT']
 
 TIMEOUTS = [2, 5, 10, 15, 20, 30, 60]
 
-ATTR    = ['id',
+ATTR   = ['id',
           'num_comments',
           'title',
           'author',
           'created_utc',
           'ups',
           'downs',
-          'edited'
+          'edited',
+          'stickied',
+          'locked'
           ]
 
 S_ATTR = ['active_user_count',
-          'subscribers']
+          'subscribers'
+          ]
 
 X_ATTR = ['time_now',
           'last_interval',
