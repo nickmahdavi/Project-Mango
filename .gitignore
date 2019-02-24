@@ -7,5 +7,5 @@
 *.ipynb
 **/.vscode/*
 *.pyc
-*.py-e
-*.pye
+data/data*.csv
+data/log*.log
