@@ -7,7 +7,6 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 DRY_RUN     = 0
 WIPE_LOGS   = 1
 WIPE_DATA   = 1
-MAX_RETRIES = 8
 QUICK_RUN   = 0
 LOG_LEVEL   = "DEBUG"
 
@@ -17,7 +16,7 @@ POST_GET_LIMIT = 5
 if QUICK_RUN:
     POST_PICKUPS = [60 * x for x in [1/12, 1/6, 1/3, 1/2, 3/4, 1,
                                            2, 5, 10, 15, 24,
-                                           30, 36, 42, 48, 60, 72]]  # Hours
+                                           30, 36, 42, 48, 60, 72]]  # Minutes
 else:
     POST_PICKUPS = [3600 * x for x in [1/12, 1/6, 1/3, 1/2, 3/4, 1,
                                              2, 5, 10, 15, 24,
@@ -58,6 +57,9 @@ X_ATTR = ['time_now',
           ]
 
 # ----------------------------------------------------- #
+
+if not os.path.isdir("../data"):
+    os.mkdir("../data")
 
 if (not os.path.isfile(LOGFILE)) or WIPE_LOGS:
     open(LOGFILE, 'w+').close()

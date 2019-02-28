@@ -95,12 +95,12 @@ def main():
                 iteration = match_row['pickup_no'].iloc[0]
                 pickup = match_row['post_pickup'].iloc[0]
 
-                logger.debug(f"{post_id}: {(time.time() - pickup)} / {(config.POST_PICKUPS[iteration])} secs, " \
-                             f"#{match_row['pickup_no'].iloc[0]} / {len(config.POST_PICKUPS)}")
- 
                 if iteration == len(config.POST_PICKUPS):
                     logger.debug("Hit final iteration, dropping")
                     continue
+
+                logger.debug(f"{post_id}: {(time.time() - pickup)} / {(config.POST_PICKUPS[iteration])} secs, " \
+                             f"#{match_row['pickup_no'].iloc[0]} / {len(config.POST_PICKUPS)}")
 
                 if (time.time() - pickup) < config.POST_PICKUPS[iteration]:
                     continue
