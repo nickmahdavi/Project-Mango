@@ -170,7 +170,7 @@ def main():
 
         except Exception:  # Or this
             logger.error(get_error())
-            os._exit(1)
+            time.sleep(10)
 
         else:
             if retries:

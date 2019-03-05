@@ -5,8 +5,8 @@ import numpy
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 DRY_RUN     = 0
-WIPE_LOGS   = 1
-WIPE_DATA   = 1
+WIPE_LOGS   = 0
+WIPE_DATA   = 0
 QUICK_RUN   = 0
 LOG_LEVEL   = "DEBUG"
 
