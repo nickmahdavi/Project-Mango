@@ -3,7 +3,7 @@ import time
 import os
 import sys
 import logging
-from logging.handlers import RotatingFileHandler 
+from logging.handlers import RotatingFileHandler
 
 import praw
 import prawcore
@@ -51,8 +51,9 @@ def auth():
 def main():
     r = auth()
     s = r.subreddit(config.SUBREDDIT)
-    
+
     df = pd.DataFrame(columns=attr)
+    df_old = pd.DataFrame(columns=attr)
     handler = Handler()
     stopwatch = Stopwatch()
 
@@ -70,7 +71,7 @@ def main():
                 else:
                     logger.info("Successfully wrote dataframe.")
             logger.info("Exited.")
-    
+
             return True
 
         else:
@@ -86,23 +87,27 @@ def main():
             values = df.sort_values('pickup_no', ascending=False).drop_duplicates(subset=['id']).sort_index().reset_index(drop=True)
 
             row = dict((a, []) for a in attr)
-    
+
             # There are better ways of doing this entire block. Also it might be slow
             for post_id in values['id'].values:
                 stopwatch.reset()
 
                 match_row = values.loc[values['id'] == post_id]
                 iteration = match_row['pickup_no'].iloc[0]
-                pickup = match_row['post_pickup'].iloc[0]
+                waited = time.time() - match_row['post_pickup'].iloc[0]
+                time_wait = config.POST_PICKUPS[iteration]
 
-                if iteration == len(config.POST_PICKUPS):
-                    logger.debug("Hit final iteration, dropping")
+                try:
+                    logger.debug(f"{post_id}: {waited} / {time_wait} secs,  {iteration} / {len(config.POST_PICKUPS)}")
+
+                except IndexError:
+                    logger.info(f"Hit final iteration of {post_id} @ {len(df.loc[df['id'] == post_id])}x " \
+                                 "(should be 18), dropping")
+                    df_old = pd.concat(df_old, df.loc[df['id'] == post_id])
+                    df.drop(df.loc[df['id'] == post_id].index, inplace=True)
                     continue
 
-                logger.debug(f"{post_id}: {(time.time() - pickup)} / {(config.POST_PICKUPS[iteration])} secs, " \
-                             f"#{match_row['pickup_no'].iloc[0]} / {len(config.POST_PICKUPS)}")
-
-                if (time.time() - pickup) < config.POST_PICKUPS[iteration]:
+                if waited < time_wait:
                     continue
 
                 logger.debug("Post has passed threshold")
@@ -113,7 +118,7 @@ def main():
                 for _s in s_attr:
                     row[_s].append(getattr(s, _s))
                 row['pickup_no'].append(iteration + 1)
-                row['post_pickup'].append(pickup)
+                row['post_pickup'].append(match_row['post_pickup'].iloc[0])
                 row['time_now'].append(time.time())
 
                 # MAGIC NUMBER 2.5: don't know just threw it in there
@@ -124,12 +129,12 @@ def main():
             row_new = dict((a, []) for a in attr)
 
             for post in s.new(limit=config.POST_GET_LIMIT):
-                if post.id in df['id'].values:
+                if (post.id in df['id'].values) or (post.id in df_old['id'].values):
                     logger.debug(f"{post.id} is a duplicate, continuing")
                     continue
 
                 logger.debug(f"Picked up {post.id}")
-                
+
                 for _a in p_attr:
                     row_new[_a].append(getattr(post, _a))
                 for _s in s_attr:
@@ -143,21 +148,17 @@ def main():
             df_new = pd.DataFrame(row_new, columns=attr)
             df_update = pd.DataFrame(row, columns=attr)
 
-            if df.equals(df.append(df_new)) and df.equals(df.append(df_update)):
-                modified = False
-            else:
-                modified = True
-                df = pd.concat([df, df_new, df_update], ignore_index=True)
-                if not config.DRY_RUN:
-                    # df.drop(['pickup_no'], axis=1).to_csv(config.DATAFILE, index=False)
-                    df.to_csv(config.DATAFILE, index=False)
+            modified = False if df.equals(df.append(df_new)) and df.equals(df.append(df_update)) else True
+
+            df = pd.concat([df, df_new, df_update], ignore_index=True)
+            if not config.DRY_RUN:
+                # df.drop(['pickup_no'], axis=1).to_csv(config.DATAFILE, index=False)
+                df.to_csv(config.DATAFILE, index=False)
 
             logger.debug(len(df.index))
 
-            del row
-            del row_new
-            del df_new
-            del df_update
+            del row, row_new
+            del df_new, df_update
 
         except prawcore.exceptions.RequestException:  # You most likely do not need this
             retries += 1
