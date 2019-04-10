@@ -95,9 +95,9 @@ def main():
                 match_row = values.loc[values['id'] == post_id]
                 iteration = match_row['pickup_no'].iloc[0]
                 waited = time.time() - match_row['post_pickup'].iloc[0]
-                time_wait = config.POST_PICKUPS[iteration]
 
                 try:
+                    time_wait = config.POST_PICKUPS[iteration]
                     logger.debug(f"{post_id}: {waited} / {time_wait} secs,  {iteration} / {len(config.POST_PICKUPS)}")
 
                 except IndexError:
@@ -203,13 +203,13 @@ def main():
             else:
                 if modified:
                     logger.info(f"{rem:.0f} calls remaining, {res:.0f} till next reset")
+                    logger.info(f"-- {time.strftime('%Y-%m-%d %H:%M:%S')} on {sys.platform}, pid {os.getpid()}")
+                    logger.info(f"-- Reading from {config.SUBREDDIT}; for more inforation see config.py.\n")
                 for _ in range(config.TIMEOUT_SECS):
                     time.sleep(1)
                     if kill_check():
                         break
 
-            logger.info(f"-- {time.strftime('%Y-%m-%d %H:%M:%S')} on {sys.platform}, pid {os.getpid()}")
-            logger.info(f"-- Reading from {config.SUBREDDIT}; for more inforation see config.py.\n")
             # No, you do not have to 'if handler.killed: break', it's a while loop
 
 if __name__ == "__main__":

@@ -13,19 +13,15 @@ LOG_LEVEL   = "INFO"
 TIMEOUT_SECS   = 10
 POST_GET_LIMIT = 5
 
-if QUICK_RUN:
-    POST_PICKUPS = [60 * x for x in [1/12, 1/6, 1/3, 1/2, 3/4, 1,
-                                           2, 5, 10, 15, 24,
-                                           30, 36, 42, 48, 60, 72]]  # Minutes
-else:
-    POST_PICKUPS = [3600 * x for x in [1/12, 1/6, 1/3, 1/2, 3/4, 1,
-                                             2, 5, 10, 15, 24,
-                                             30, 36, 42, 48, 60, 72]]  # Hours
+
+POST_PICKUPS = [60 ** (QUICK_RUN + 1) * x for x in [1/12, 1/6, 1/3, 1/2, 3/4, 1,
+                                                    2, 5, 10, 15, 24,
+                                                    30, 36, 42, 48, 60, 72]]  # Minutes/hours
 
 DATAFILE = os.path.abspath('../data/data.csv')
 LOGFILE  = os.path.abspath('../data/log.log')
 
-SUBREDDIT = 'AskReddit'  # Find a better subreddit
+SUBREDDIT = 'Jokes'  # Find a better subreddit
 
 CLIENT_ID     = os.environ['CLIENT_ID']
 CLIENT_SECRET = os.environ['CLIENT_SECRET']
@@ -38,10 +34,11 @@ TIMEOUTS = [2, 5, 10, 15, 20, 30, 60]
 ATTR   = ['id',
           'num_comments',
           'title',
+          'selftext',
           'author',
           'created_utc',
-          'ups',
-          'downs',
+          'score',
+          'upvote_ratio',
           'edited',
           'stickied',
           'locked'
