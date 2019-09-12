@@ -24,9 +24,7 @@ d) Python 3.6+
 ### Okay, but what does this actually do?
 TL;DR: Get data predict data.
 
-A:
-
-First is the data scraper. The first step is just grabbing everything we can find—that is, everything we want to find. In this case, the preset config values are mainly looking at _post specific values_, e.g. title, number of comments, etc. So we grab all the IDs we can, and check in on them at set intervals, which get farther apart as tine goes on (posts are less volatile the longer they exist). For example, we might get all the values (time posted, title, all that stuff) and log it. Then wait some time and check back in, and log the _new_ values, along with the same ID. We're looking at values during snapshots of time, so we can draw the conclusions independently later.
+A: First is the data scraper. The first step is just grabbing everything we can find—that is, everything we want to find. In this case, the preset config values are mainly looking at _post specific values_, e.g. title, number of comments, etc. So we grab all the IDs we can, and check in on them at set intervals, which get farther apart as tine goes on (posts are less volatile the longer they exist). For example, we might get all the values (time posted, title, all that stuff) and log it. Then wait some time and check back in, and log the _new_ values, along with the same ID. We're looking at values during snapshots of time, so we can draw the conclusions independently later.
 
 Second is the modeling. A few notebooks are in the docs folder, for an example of what I did, but there are many more ways to draw conclusions from however large of a data file you have. And it's CSV, so it can be... pretty big. I only looked at a single value vs post score, but with PRAW, even image analysis is possible. There are essentially no bounds on the data you can collect, even beyond the bounds of what a user can see.
 
