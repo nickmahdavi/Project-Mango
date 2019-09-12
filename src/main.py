@@ -210,7 +210,7 @@ def main():
                     if kill_check():
                         break
 
-            # No, you do not have to 'if handler.killed: break', it's a while loop
+            # No, you do not have to 'if handler.killed: break', it's a while loop, nick
 
 if __name__ == "__main__":
     main()

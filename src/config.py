@@ -14,7 +14,7 @@ TIMEOUT_SECS   = 10
 POST_GET_LIMIT = 5
 
 
-POST_PICKUPS = [60 ** (QUICK_RUN + 1) * x for x in [1/12, 1/6, 1/3, 1/2, 3/4, 1,
+POST_PICKUPS = [60 ** (QUICK_RUN ^ 1) * x for x in [1/12, 1/6, 1/3, 1/2, 3/4, 1,
                                                     2, 5, 10, 15, 24,
                                                     30, 36, 42, 48, 60, 72]]  # Minutes/hours
 
@@ -46,11 +46,6 @@ ATTR   = ['id',
 
 S_ATTR = ['active_user_count',
           'subscribers'
-          ]
-
-X_ATTR = ['time_now',
-          'last_interval',
-          'post_pickup'
           ]
 
 # ----------------------------------------------------- #
