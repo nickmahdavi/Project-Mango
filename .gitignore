@@ -8,3 +8,4 @@
 *.pyc
 data/data*.csv
 data/log*.log
+datafile_final.csv
