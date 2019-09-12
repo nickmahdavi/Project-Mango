@@ -16,7 +16,7 @@ a) Your own reddit account and credentials
 
 b) An API key from reddit
 
-c) All dependencies in requirements.txt. **Note that these include the (possibly unnecessary) dependencies for the notebooks, too!**
+c) requirements.txt — **Note that these include the (possibly unnecessary) dependencies for the notebooks, too!**
 
 d) Python 3.6+
 
